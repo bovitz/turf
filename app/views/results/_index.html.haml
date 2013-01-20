@@ -1,0 +1,28 @@
+.index
+	%h2 Results
+	%table.index_table
+		%tr
+			%th Run Time
+			%th Name
+			%th Top Combination
+			%th Reach
+			%th Frequency
+			%th Total Respondents
+			%th Total Buyers
+			%th Options
+		- @all_results.each do |result|
+			%tr
+				%td
+					= result.created_at.strftime("%b %-d, %Y")
+					%br
+					= result.created_at.strftime("%l:%M%P")
+				%td= result.name
+				%td= result.combo
+				%td= result.reach
+				%td= result.frequency
+				%td= result.total_respondents
+				%td= result.total_buyers
+				%td
+					%ul.index_options
+						%li= link_to 'View', result_path(result)
+						%li= link_to 'Delete', result_path(result), :method => :delete, :confirm => 'Delete this result?'

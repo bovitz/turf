@@ -1,0 +1,111 @@
+body { 
+	font-family: helvetica;
+	color: $gray;
+	margin: 0;
+	background-color: lighten($gray, 53%);
+}
+a, a:visited {
+	color: darken($gray, 20%);
+	text-decoration: none;
+}
+a:hover {
+	color: $magenta;
+}
+div#nav {
+	position: fixed;
+	float: left;
+	z-index: 1;
+	width: 170px;
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+	background-color: $cyan;
+	border-right: 1px solid $gray;
+}
+li#nav_home {
+	font-size: 3em;
+	font-weight: bold;
+}
+li#project_select {
+	color: darken($gray, 20%);
+}
+#nav ul { 
+	@include ul-nav;
+}
+#nav li {
+	padding: 3px;
+	margin: 2px;
+}
+div#content {
+	margin-left: 200px;
+	width: 800px;
+	text-align: center;
+}
+div#notice_space {
+	height: 30px;
+	vertical-align: middle;
+}
+div#errors {
+	text-align: left;
+	color: $magenta;
+}
+.field_with_errors {
+	color: $magenta;
+	}
+div#notice {
+	color: $magenta;
+	background-color: $yellow;
+	font-weight: bold;
+	display: inline-block;
+	padding: 5px;
+	margin: 0px;
+}
+.index h2 {
+	margin: 5px;
+	text-align: left;
+}
+table.index_table {
+	width: 100%;
+}
+.index_table, .index_table th, .index_table td {
+	border: 1px solid $gray;
+	border-collapse: collapse;
+}
+.index_table th {
+	padding: 5px;
+	font-size: 0.8em;
+	font-weight: normal;
+	color: lighten($gray, 53%);
+	background-color: $cyan;
+}
+.index_table td {
+	padding: 5px;
+	font-size: 0.8em;
+	max-width: 200px;
+	background-color: white;
+}
+td.radio_select {
+	width: 20px;
+}
+ul.index_options {
+	@include ul-nav;
+	text-align: left;
+}
+div.index {
+	margin: 20px;
+}
+form {
+	display: block;
+}
+.form_table th {
+	padding: 10px;
+	text-align: right;
+}
+#run_button {
+	position: relative;
+	float: left;
+	margin-left: 20px;
+}
+.show {
+	text-align: left;
+}

@@ -1,0 +1,21 @@
+%h2= "Results for #{@result.name}"
+.show
+	%p
+		%b Combo:
+		= @result.combo
+	%p
+		%b Reach:
+		= @result.reach
+	%p
+		%b Frequency:
+		= @result.frequency
+	%p
+		%b Total respondents:
+		= @result.total_respondents
+	%p
+		%b Total respondents:
+		= @result.total_respondents
+
+	= link_to 'Back', root_path
+	|
+	= link_to 'Delete', result_path(@result), :method => 'delete'

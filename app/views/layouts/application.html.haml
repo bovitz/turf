@@ -2,12 +2,15 @@
 %html
 	%head
 		%title TURF Tool
-		= stylesheet_link_tag 'application', :media => 'all'
+		= stylesheet_link_tag :application, :media => 'all'
 		= javascript_include_tag :application
 		= yield :head
 	%body
-		%h1= link_to 'TURF Tool', root_path
-		- if flash[:notice]
-			%div#notice= flash[:notice]
-		%div#content
-			= yield
+		= render :partial => '/shared/nav'
+		#content
+			%div#notice_space
+				- if flash[:notice]
+					%div#notice= flash[:notice]
+			= render :partial => '/shared/errors'
+			#main_content
+				= yield

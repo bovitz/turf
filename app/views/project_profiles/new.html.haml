@@ -1,0 +1,22 @@
+%h2= "New Project Profile for #{Project.find(@current_project_id).name}"
+= form_for(@project_profile) do |p|
+	= p.label :name, 'Name'
+	= p.text_field :name
+	%br
+	= p.label :buy_prefix, 'Buy Variables Prefix'
+	= p.text_field :buy_prefix
+	%br
+	= p.label :freq_prefix, 'Frequency Variables Prefix'
+	= p.text_field :freq_prefix
+	%br
+	= p.label :num_varieties, 'Number of Product Varieties'
+	= p.text_field :num_varieties
+	%br
+	= p.label :threshold, 'Buyer Threshold'
+	= p.text_field :threshold
+	%br
+	= p.label :combo_size, 'Ideal Combination Size'
+	= p.text_field :combo_size
+	%br
+	= p.hidden_field :project_id, :value => @current_project_id
+	= submit_tag

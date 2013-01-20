@@ -1,6 +1,11 @@
 Turf::Application.routes.draw do
 
+  resources :results
+
+
 	root :to => 'welcome#index'
+
+	resources :projects
 
 	match 'uploads/delete_all' => 'uploads#delete_all', :as => :delete_all_uploads
 	resources :uploads do
@@ -8,6 +13,8 @@ Turf::Application.routes.draw do
 			get 'view_observations'
 		end
 	end
+
+	resources :project_profiles
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,14 @@
+#nav
+	%ul
+		%li#nav_home= link_to 'TURF', root_path
+		%li#project_select
+			Project
+			%br
+			= form_tag(root_path) do
+				= select_tag "current_project_id", options_from_collection_for_select(@all_projects, "id", "name", @current_project_id), options = { :prompt => "- select project -", :onchange => "this.form.submit()" }
+			%br
+			%br
+		%li= link_to 'New Project', new_project_path
+		%li= link_to 'New Upload', new_upload_path
+		%li= link_to 'New Project Profile', new_project_profile_path
+		%li= link_to 'Delete All Uploads', delete_all_uploads_path, :confirm => 'This will delete ALL uploads. Woud you like to proceed?'

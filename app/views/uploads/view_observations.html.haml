@@ -1,4 +1,10 @@
-- @observations.each do |observation|
-	%ul
-		%li= 'Case: ' + observation.case
-		%li= "#{Header.find(observation.header_id).name}: #{observation.punch}"
+%h2= "Data for #{@upload.name}"
+%table.index_table
+	%tr
+		- @headers.each do |header|
+			%th= header.name
+	- @observations.map { |observation| observation.case_id }.uniq.each do |case_id|
+		%tr
+			%td= case_id
+			- @observations.select { |observation| observation.case_id == case_id }.each_with_index do |observation, index|
+				%td= observation.punch

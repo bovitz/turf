@@ -1,3 +1,30 @@
 .index
 	%h2 Project Profiles
-	Coming soon...
+	%table.index_table
+		%tr
+			%th
+			%th Last Updated
+			%th Name
+			%th Buy Variable Prefix
+			%th Freq Variable Prefix
+			%th # of Varieties
+			%th Threshold
+			%th Combination Size
+			%th Options
+		- @all_project_profiles.each do |project_profile|
+			%tr
+				%td.radio_select= radio_button_tag 'select_project_profile', project_profile.id
+				%td
+					= project_profile.updated_at.strftime("%b %-d, %Y")
+					%br
+					= project_profile.updated_at.strftime("%l:%M%P")
+				%td= project_profile.name
+				%td= project_profile.buy_prefix
+				%td= project_profile.freq_prefix
+				%td= project_profile.num_varieties
+				%td= project_profile.threshold
+				%td= project_profile.combo_size
+				%td
+					%ul.index_options
+						%li= link_to 'Edit', edit_project_profile_path(project_profile)
+						%li= link_to 'Delete', project_profile_url(project_profile), :method => :delete, :confirm => "Delete this project profile?"

@@ -66,5 +66,7 @@ module Turf
 			g.fixture_replacement :factory_girl
 		end
 
+		config.active_support.deprecation = :log
+
   end
 end

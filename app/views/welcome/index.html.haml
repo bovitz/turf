@@ -1,2 +1,9 @@
-= render :partial => 'uploads/index'
-= render :partial => 'project_profiles/index'
+%h1= @welcome_title
+%form{:action => "/results", :class => "new_result", :id => "new_result", :method =>"post"}
+	= render :partial => 'uploads/index'
+	= render :partial => 'project_profiles/index'
+	= hidden_field_tag :select_project_id, @current_project_id
+	= submit_tag "Run Results", :id => 'run_button'
+%br
+%br
+= render :partial => 'results/index'

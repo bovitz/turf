@@ -1,22 +1,20 @@
 class UploadsController < ApplicationController
 
-	def index
-		@all_uploads = Upload.all
-	end
-
 	def new
 	end
 
 	def create
-		Upload.import(params[:file], Upload.create(:name => params[:file].original_filename, :row_count => params[:file].size).id)
+		Upload.import(params[:file], Upload.create(:name => params[:file].original_filename, :project_id => params[:current_project_id]))
 		flash[:notice] = "File '#{params[:file].original_filename}' uploaded"
 		redirect_to root_path
 	end
 
 	def destroy
-		@upload = Upload.find(params[:id])
-		@upload.destroy and Header.find_all_by_upload_id(@upload.id).each { |header| header.destroy } and Observation.find_all_by_upload_id(@upload.id).each { |observation| observation.destroy }
-		flash[:notice] = "Upload '#{@upload.name}' deleted"
+		upload = Upload.find(params[:id])
+		flash[:notice] = "Upload '#{upload.name}' deleted"
+		upload.headers.destroy_all
+		upload.observations.destroy_all
+		upload.destroy
 		redirect_to root_path
 	end
 
@@ -29,7 +27,9 @@ class UploadsController < ApplicationController
 	end
 
 	def view_observations
-		@observations = Observation.find_all_by_upload_id(params[:id])
+		@upload = Upload.find(params[:id])
+		@headers = @upload.headers
+		@observations = @upload.observations
 	end
-
+		
 end

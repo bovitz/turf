@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121042531) do
+ActiveRecord::Schema.define(:version => 20130213034310) do
 
   create_table "headers", :force => true do |t|
     t.string   "name"
@@ -21,17 +21,49 @@ ActiveRecord::Schema.define(:version => 20130121042531) do
   end
 
   create_table "observations", :force => true do |t|
-    t.string   "case"
+    t.string   "case_id"
     t.integer  "punch"
-    t.integer  "upload_id"
     t.integer  "header_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  create_table "project_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "buy_prefix"
+    t.string   "freq_prefix"
+    t.integer  "num_varieties"
+    t.integer  "threshold"
+    t.integer  "combo_size"
+    t.integer  "project_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "results", :force => true do |t|
+    t.string   "name"
+    t.string   "combo",              :default => "N/A"
+    t.integer  "reach",              :default => 0
+    t.integer  "frequency",          :default => 0
+    t.integer  "total_respondents"
+    t.integer  "total_buyers",       :default => 0
+    t.integer  "project_id"
+    t.integer  "upload_id"
+    t.integer  "project_profile_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
   create_table "uploads", :force => true do |t|
     t.string   "name"
     t.integer  "row_count"
+    t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

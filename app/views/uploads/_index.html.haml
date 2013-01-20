@@ -2,6 +2,7 @@
 	%h2 Uploads
 	%table.index_table
 		%tr
+			%th
 			%th Upload Time
 			%th File Name
 			%th # of Records
@@ -9,14 +10,17 @@
 			%th Options
 		- @all_uploads.each do |upload|
 			%tr
-				%td= upload.created_at.strftime("%Y-%m-%d %H:%M")
+				%td.radio_select= radio_button_tag 'select_upload', upload.id
+				%td
+					= upload.created_at.strftime("%b %-d, %Y")
+					%br
+					= upload.created_at.strftime("%l:%M%P")
 				%td= upload.name
 				%td= upload.row_count
-				%td= Header.find_all_by_upload_id(upload.id).collect { |header| header.name }.join(', ')
+				%td 
+					- header_list = Header.find_all_by_upload_id(upload.id).collect { |header| header.name }.drop(1).join(', ')
+					%span{:title => header_list}= "#{header_list[0,12]}..."
 				%td
 					%ul.index_options
+						%li= link_to 'View Data', view_observations_upload_path(upload)
 						%li= link_to 'Delete', upload_path(upload), :method => :delete, :confirm => 'Delete this upload?'
-						%li= link_to 'View Observations', view_observations_upload_path(upload)
-	.footer_nav
-		%ul
-			= render :partial => 'uploads/footer_nav'
