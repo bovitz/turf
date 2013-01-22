@@ -1,0 +1,22 @@
+.index
+	%h2 Uploads
+	%table.index_table
+		%tr
+			%th Upload Time
+			%th File Name
+			%th # of Records
+			%th Headers
+			%th Options
+		- @all_uploads.each do |upload|
+			%tr
+				%td= upload.created_at.strftime("%Y-%m-%d %H:%M")
+				%td= upload.name
+				%td= upload.row_count
+				%td= Header.find_all_by_upload_id(upload.id).collect { |header| header.name }.join(', ')
+				%td
+					%ul.index_options
+						%li= link_to 'Delete', upload_path(upload), :method => :delete, :confirm => 'Delete this upload?'
+						%li= link_to 'View Observations', view_observations_upload_path(upload)
+	.footer_nav
+		%ul
+			= render :partial => 'uploads/footer_nav'

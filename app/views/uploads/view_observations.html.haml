@@ -1,0 +1,4 @@
+- @observations.each do |observation|
+	%ul
+		%li= 'Case: ' + observation.case
+		%li= "#{Header.find(observation.header_id).name}: #{observation.punch}"
